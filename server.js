@@ -15,7 +15,7 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUrl = 'mongodb+srv://root:myrootpass@cluster0-dovuy.mongodb.net/test?retryWrites=true&w=majority';
+var dbUrl = process.env.MONGO_URL; 
 
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
