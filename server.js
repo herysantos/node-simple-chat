@@ -16,13 +16,8 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUser = process.env.DB_USER;
-var dbPass = process.env.DB_PASS;
-var dbHost = process.env.DB_HOST;
-
-
-
-var dbUrl = "mongodb+srv://"+dbUser+":"+dbPass+"@"+dbHost+"/test?retryWrites=true&w=majority";
+var dbUrl = process.env.MONGO_URL;
+// SET DATABASE URL WITH ARGS "mongodb+srv://"+dbUser+":"+dbPass+"@"+dbHost+"/test?retryWrites=true&w=majority";
 console.log("DB_URL is"+dbUrl);
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
