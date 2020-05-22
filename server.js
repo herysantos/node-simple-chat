@@ -1,9 +1,10 @@
+const port = process.env.PORT || 3000;
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(port);
 var io = require('socket.io').listen(server);
 
 app.use(express.static(__dirname));
@@ -15,8 +16,14 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUrl = MONGO_DB_URL;
+var dbUser = process.env.DB_USER;
+var dbPass = process.env.DB_PASS;
+var dbHost = process.env.DB_HOST;
 
+
+
+var dbUrl = "mongodb+srv://"+dbUser+":"+dbPass+"@"+dbHost+"/test?retryWrites=true&w=majority";
+console.log("DB_URL is"+dbUrl);
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
