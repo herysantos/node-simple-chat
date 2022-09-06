@@ -25,7 +25,7 @@
     "devDependencies": {
       "nodemon": "^2.0.3",
       "mocha": "1.20.1",
-      "supertest": "0.13.0"
+      "supertest": "6.2.4"
    }
   }
   
