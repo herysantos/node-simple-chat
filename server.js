@@ -18,7 +18,7 @@ var Message = mongoose.model('Message',{
 
 var dbUrl = process.env.MONGO_URL;
 // SET DATABASE URL WITH ARGS "mongodb+srv://"+dbUser+":"+dbPass+"@"+dbHost+"/test?retryWrites=true&w=majority";
-console.log("DB_URL is"+dbUrl);
+console.log("DB_URL is "+dbUrl);
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
@@ -45,7 +45,7 @@ io.on('connection', () =>{
   console.log('a user is connected')
 })
 
-mongoose.connect(dbUrl ,{useMongoClient : true} ,(err) => {
+mongoose.connect(dbUrl,(err) => {
   console.log('mongodb connected',err);
 })
 
