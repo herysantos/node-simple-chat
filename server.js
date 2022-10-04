@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 
 var app = express();
 var server = app.listen(port);
-var io = require('socket.io').listen(server);
+var io = require('socket.io')(server);
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -19,6 +19,7 @@ var Message = mongoose.model('Message',{
 var dbUrl = process.env.MONGO_URL;
 // SET DATABASE URL WITH ARGS "mongodb+srv://"+dbUser+":"+dbPass+"@"+dbHost+"/test?retryWrites=true&w=majority";
 console.log("DB_URL is "+dbUrl);
+
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
